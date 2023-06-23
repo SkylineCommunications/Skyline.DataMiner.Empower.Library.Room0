@@ -20,7 +20,6 @@
         private static readonly string keyName = "SLC_EXTERNAL_DISPATCHER_KEY";
 
         private readonly SecureString apiKey;
-        private readonly string suffix;
         private readonly string name;
 
         /// <summary>
@@ -32,7 +31,6 @@
             // Key was setup using the dotnet tool Skyline.DataMiner.CICD.Tools.WinEncryptedKeys
             apiKey = Keys.RetrieveKey(keyName);
             name = orderValue;
-            suffix = " from room 'ThisIsABug'";
         }
 
         /// <summary>
@@ -61,7 +59,7 @@
         public async Task<bool> DispatchAsync(string user)
         {
             var url = endpoint;
-            string data = "User " + user + " placed order " + name + suffix;
+            string data = "User " + user + " wants to catch " + name;
 
             using (var client = new HttpClient())
             {
